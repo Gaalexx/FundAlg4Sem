@@ -136,7 +136,7 @@ TEST(ArrayTest, Iterators) {
 }
 
 TEST(ArrayTest, ConstIterators) {
-    const Array<int, 4> arr = {1, 2, 3, 4};
+    const Array<const int, 4> arr = {1, 2, 3, 4};
     
     int expected = 1;
     for (auto it = arr.cbegin(); it != arr.cend(); ++it) {

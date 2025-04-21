@@ -110,7 +110,7 @@ TEST(ListTest, Iterator) {
 }
 
 TEST(ListTest, ConstIterator) {
-    const List<int> list = {1, 2, 3};
+    const List<const int> list = {1, 2, 3};
     int sum = 0;
     for (auto it = list.cbegin(); it != list.cend(); ++it) {
         sum += *it;

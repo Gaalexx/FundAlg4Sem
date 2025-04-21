@@ -25,8 +25,11 @@ namespace my_container{
 
     template<class T, size_t N>
     class Array : public Container<T, N>{
+
+        using NoConstT = std::remove_const_t<T>;
+
     private:
-        T elements[N];
+        NoConstT elements[N];
         size_t _size;
         T* _begin() noexcept override final{
             T* ptr = this->elements;
@@ -75,7 +78,7 @@ namespace my_container{
     public:
         class Iterator {
             private:
-                T* ptr;
+            NoConstT* ptr;
             public:
                 Iterator(T* ptr = nullptr) : ptr(ptr) {}
                 Iterator(const Iterator &itr) : ptr(itr.ptr) {}
@@ -147,7 +150,7 @@ namespace my_container{
 
         class ConstIterator {
             private:
-                const T* ptr;
+                const NoConstT* ptr;
             public:
                 ConstIterator(const T* ptr = nullptr) : ptr(ptr) {}
                 ConstIterator(const ConstIterator &itr) : ptr(itr.ptr) {}
@@ -219,7 +222,7 @@ namespace my_container{
 
         class ReverseIterator{
             protected:
-                T* ptr;
+                NoConstT* ptr;
             public:
                 ReverseIterator(T* ptr = nullptr) : ptr(ptr) {}
                 ReverseIterator(const ReverseIterator &itr) : ptr(itr.ptr) {}
@@ -298,7 +301,7 @@ namespace my_container{
 
         class ConstReverseIterator{
             protected:
-                const T* ptr;
+                const NoConstT* ptr;
             public:
                 ConstReverseIterator(const T* ptr = nullptr) : ptr(ptr) {}
                 ConstReverseIterator(const ConstReverseIterator &itr) : ptr(itr.ptr) {}

@@ -72,7 +72,7 @@ namespace {
     }
 
     TEST(DequeTest, ConstIterators) {
-        const Deque<int> dq = {1, 2, 3, 4, 5};
+        const Deque<const int> dq = {1, 2, 3, 4, 5};
         
         int sum = 0;
         for (auto it = dq.cbegin(); it != dq.cend(); ++it) {

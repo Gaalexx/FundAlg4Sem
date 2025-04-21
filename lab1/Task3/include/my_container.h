@@ -18,13 +18,15 @@ namespace my_container{
 
     template<class T>
     class List : Container<T>{
+
+        using NoConstT = std::remove_const_t<T>;
+
         protected:
             class Node{
                 public:
-                    T data;
+                    NoConstT data;
                     Node *next, *prev;
                     Node(): data(T{}), next(nullptr), prev(nullptr) {} 
-                    Node(T& _data): data(_data), next(nullptr), prev(nullptr) {}
                     Node(const T& _data): data(_data), next(nullptr), prev(nullptr) {}
 
                     Node(const T& _data, const Node*& prev, const Node*& next): data(_data), next(next), prev(prev) {}
@@ -36,6 +38,8 @@ namespace my_container{
                     }
                     ~Node() = default; 
             };
+
+        protected:
 
             Node *_head, *_tail;
             size_t _size;
@@ -466,13 +470,13 @@ namespace my_container{
             using const_reverse_iterator = ConstReverseIterator;
 
 
-            List() : Container<T>() {
+            List(){
                 _head = new Node();
                 _tail = _head;
                 _size = 0;
             }
 
-            List(const std::initializer_list<T> &initList) : Container<T>() {
+            List(const std::initializer_list<T> &initList){
                 _size = initList.size();
                 if(_size == 0){
                     _head = new Node();
@@ -492,7 +496,7 @@ namespace my_container{
                 }
             }
 
-            List(const List<T> &copy) : Container<T>() {
+            List(const List<T> &copy){
                 _head = new Node();
                 _tail = _head;
                 _size = 0;
@@ -502,7 +506,7 @@ namespace my_container{
                 }
             }
 
-            List(List<T>&& other) noexcept : _head(other._head), _tail(other._tail), _size(other._size), Container<T>() {
+            List(List<T>&& other) noexcept : _head(other._head), _tail(other._tail), _size(other._size) {
                 other._head = nullptr;
                 other._tail = nullptr;
                 other._size = 0;
@@ -778,7 +782,7 @@ namespace my_container{
             }
 
     };
-    
+
     template<class T>
     class Deque : public List<T> {
         public:
@@ -825,102 +829,6 @@ namespace my_container{
                     delete cur;
                     cur = _head;
                 }
-            }
-    };
-    
-
-    template<class T>
-    class Stack{
-        protected:
-            Deque<T> data;
-        public:
-            Stack() = default;
-            Stack(const std::initializer_list<T>& initList){
-                for (auto i = initList.begin(); i != initList.end(); i++)
-                {
-                    data.push_back(*i);
-                }
-            }
-
-            Stack(const Stack<T>& src){
-                for (auto i = src.data.begin(); i != src.data.end(); i++)
-                {
-                    data.push_back(*i);
-                }
-            }
-
-            const T& top() const{
-                return data.back();
-            }
-
-            T& top(){
-                return data.back();
-            }
-
-            bool empty(){
-                return data.empty();
-            }
-
-            size_t size(){
-                return data.size();
-            }
-
-            void push(const T& element){
-                data.push_back(element);
-            }
-
-            void pop(){
-                if(data._size == 0){
-                    throw std::out_of_range("There are no elements!");
-                }
-                else{
-                    data.pop_back();
-                }
-            }
-
-            static void swap(Stack<T>& stack1, Stack<T>& stack2){
-                Deque<T>::swap(stack1.data, stack2.data);
-            }
-
-            std::strong_ordering operator<=> (const Stack<T>& element){
-                return data <=> element.data;
-            }
-
-            bool operator==(const Stack<T>& element){
-                return data == element.data;
-            }
-
-            bool operator!=(const Stack<T>& element){
-                return data != element.data;
-            }
-
-            bool operator<(const Stack<T>& element){
-                return data < element.data;
-            }
-
-            bool operator<=(const Stack<T>& element){
-                return data <= element.data;
-            }
-
-            bool operator>(const Stack<T>& element){
-                return data > element.data;
-            }
-
-            bool operator>=(const Stack<T>& element){
-                return data >= element.data;
-            }
-
-            Stack<T>& operator=(const Stack<T>& other){
-                data.clear();
-                for (auto i = other.data.begin(); i != other.data.end(); i++)
-                {
-                    push(*i);
-                }
-                return *this;
-            }
-
-            size_t max_size(){
-                return data.max_size();
             }
     };
 }

@@ -18,13 +18,16 @@ namespace my_container{
 
     template<class T>
     class List : Container<T>{
-        private:
+
+        using NoConstT = std::remove_const_t<T>;
+
+        protected:
+        
             class Node{
                 public:
-                    T data;
+                    NoConstT data;
                     Node *next, *prev;
                     Node(): data(T{}), next(nullptr), prev(nullptr) {} 
-                    Node(T& _data): data(_data), next(nullptr), prev(nullptr) {}
                     Node(const T& _data): data(_data), next(nullptr), prev(nullptr) {}
 
                     Node(const T& _data, const Node*& prev, const Node*& next): data(_data), next(next), prev(prev) {}
@@ -37,7 +40,8 @@ namespace my_container{
                     ~Node() = default; 
             };
 
-        private:
+        protected:
+
             Node *_head, *_tail;
             size_t _size;
 

@@ -623,6 +623,34 @@ namespace my_container{
                 --_size;
             }
 
+
+            T& operator[](size_t index) {
+                if (index >= _size) {
+                    throw std::out_of_range("Index " + std::to_string(index) + " out of range");
+                }
+                
+                Node* current = _head;
+                for (size_t i = 0; i < index; ++i) {
+                    current = current->next;
+                }
+                
+                return current->data;
+            }
+            
+            const T& operator[](size_t index) const {
+                if (index >= _size) {
+                    throw std::out_of_range("Index " + std::to_string(index) + " out of range");
+                }
+                
+                Node* current = _head;
+                for (size_t i = 0; i < index; ++i) {
+                    current = current->next;
+                }
+                
+                return current->data;
+            }
+
+
             void push_back(const T& element) noexcept {
                 if(_size == 0){
                     _head->data = element;

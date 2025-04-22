@@ -8,9 +8,7 @@ int main(){
 
     list.push_back(33);
 
-    for (auto i = list.begin(); i != list.end(); i++)
-    {
-        std::cout << *i << std::endl;
-    }
+    std::cout << list[3] << std::endl;
+
     return 0;
 }

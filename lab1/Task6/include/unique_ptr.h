@@ -1,3 +1,5 @@
+#include <utility>
+
 namespace my_smart_ptr {
 
 template <typename T>
@@ -108,7 +110,7 @@ template <typename T>
                 return ptr_ != nullptr;
             }
 
-            T& operator[](size_t index) const {
+            T& operator[](std::size_t index) const {
                 return ptr_[index];
             }
 

@@ -100,6 +100,13 @@ TEST(ListTest, Clear) {
     EXPECT_TRUE(list.empty());
 }
 
+TEST(ListTest, At) {
+    List<int> list = {1, 2, 3};
+    EXPECT_EQ(list[0], 1);
+    EXPECT_EQ(list[1], 2);
+    EXPECT_EQ(list[2], 3);
+}
+
 TEST(ListTest, Iterator) {
     List<int> list = {1, 2, 3};
     int sum = 0;

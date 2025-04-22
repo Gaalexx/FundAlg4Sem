@@ -22,6 +22,7 @@ namespace my_container{
         using NoConstT = std::remove_const_t<T>;
 
         protected:
+        
             class Node{
                 public:
                     NoConstT data;
@@ -512,7 +513,7 @@ namespace my_container{
                 other._size = 0;
             }
 
-            virtual ~List() noexcept override{
+            ~List() noexcept override{
                 Node *cur = _head;
                 while(cur != nullptr){
                     _head = _head->next;
@@ -621,6 +622,34 @@ namespace my_container{
                 position.ptr = nullptr;
                 --_size;
             }
+
+
+            T& operator[](size_t index) {
+                if (index >= _size) {
+                    throw std::out_of_range("Index " + std::to_string(index) + " out of range");
+                }
+                
+                Node* current = _head;
+                for (size_t i = 0; i < index; ++i) {
+                    current = current->next;
+                }
+                
+                return current->data;
+            }
+            
+            const T& operator[](size_t index) const {
+                if (index >= _size) {
+                    throw std::out_of_range("Index " + std::to_string(index) + " out of range");
+                }
+                
+                Node* current = _head;
+                for (size_t i = 0; i < index; ++i) {
+                    current = current->next;
+                }
+                
+                return current->data;
+            }
+
 
             void push_back(const T& element) noexcept {
                 if(_size == 0){

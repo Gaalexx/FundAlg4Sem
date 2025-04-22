@@ -48,7 +48,7 @@ namespace my_container{
                 _data = new T[_capacity];
             }
 
-            Vector(size_t size) : _length(size), _capacity(size), Container<T>() {
+            Vector(size_t size) : Container<T>(), _length(size), _capacity(size) {
                 
                 _data = new T[size];
 
@@ -59,7 +59,7 @@ namespace my_container{
                 
             }
 
-            Vector(size_t size, T value) : _length(size), _capacity(size), Container<T>() {
+            Vector(size_t size, T value) : Container<T>(),_length(size), _capacity(size) {
                 
                 _data = new T[size];
 
@@ -223,7 +223,7 @@ namespace my_container{
 
 
             const T& at(const size_t& index) const {
-                return *this[index];
+                return (*this)[index];
             }
 
             const T* data() const {

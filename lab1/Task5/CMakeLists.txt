@@ -51,7 +51,7 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 
     if(LCOV AND GENHTML)
         add_custom_target(coverage
-            COMMAND ${LCOV} --capture --directory . --ignore-errors mismatch --output-file coverage.info
+            COMMAND ${LCOV} --capture --directory . --output-file coverage.info
             COMMAND ${LCOV} --remove coverage.info /usr/* */googletest/* */tests/* --output-file coverage_filtered.info
             COMMAND ${GENHTML} coverage_filtered.info --output-directory coverage_report
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR}

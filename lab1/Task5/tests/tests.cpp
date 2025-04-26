@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "my_container.h" // Include your Vector header here
+#include "my_container.h" 
 
 namespace {
 
@@ -8,11 +8,11 @@ using namespace my_container;
 class VectorTest : public ::testing::Test {
 protected:
     void SetUp() override {
-        // Setup code if needed
+        
     }
 
     void TearDown() override {
-        // Cleanup code if needed
+        
     }
 };
 

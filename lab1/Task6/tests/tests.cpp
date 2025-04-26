@@ -9,7 +9,6 @@ protected:
         int_ptr.reset(new int(42));
         array_ptr.reset(new int[3]{1, 2, 3});
     }
-
     UniquePtr<int> int_ptr;
     UniquePtr<int[]> array_ptr;
 };

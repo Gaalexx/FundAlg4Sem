@@ -310,24 +310,6 @@ namespace my_container{
             bool operator!=(const Container<T>& second) const override final {
                 return !(*this == second);
             }
-            
-            /* bool operator==(const Vector& other) const {
-                if (_length != other._length) return false;
-                for (size_t i = 0; i < _length; ++i) {
-                    if (_data[i] != other._data[i]) {
-                        return false;
-                    }
-                }
-                return true;
-            }
-
-
-            bool operator!=(const Vector& other) const {
-                return !(*this == other);
-            }
- */
-
-            
 
             bool operator<(const Vector& other) const {
                 if((*this <=> other) == std::strong_ordering::less){

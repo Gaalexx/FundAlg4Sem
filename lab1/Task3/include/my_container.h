@@ -110,40 +110,6 @@ namespace my_container{
                     return tmp;
                 }
             
-                Iterator operator+(int n) const {
-                    Node* pptr = ptr;
-                    for (size_t i = 0; i < n || pptr != nullptr; i++)
-                    {
-                        pptr = pptr->next;
-                    }
-                    return Iterator(pptr);
-                }
-            
-                Iterator operator-(int n) const {
-                    Node* pptr = ptr;
-                    for (size_t i = 0; i < n || pptr != nullptr; i++)
-                    {
-                        pptr = pptr->prev;
-                    }
-                    
-                    return Iterator(pptr);
-                }
-            
-                Iterator& operator+=(int n) {
-                    for (size_t i = 0; i < n || ptr != nullptr; i++)
-                    {
-                        ptr = ptr->next;
-                    }
-                    return *this;
-                }
-                
-                Iterator& operator-=(int n) {
-                    for (size_t i = 0; i < n || ptr != nullptr; i++)
-                    {
-                        ptr = ptr->prev;
-                    }
-                    return *this;
-                }
             
                 bool operator==(const Iterator& other) const {
                     return ptr == other.ptr;
@@ -203,41 +169,6 @@ namespace my_container{
                         ConstIterator tmp = *this;
                         this->ptr = this->ptr->prev;
                         return tmp;
-                    }
-                
-                    ConstIterator operator+(int n) const {
-                        Node* pptr = ptr;
-                        for (size_t i = 0; i < n || pptr != nullptr; i++)
-                        {
-                            pptr = pptr->next;
-                        }
-                        return ConstIterator(pptr);
-                    }
-                
-                    ConstIterator operator-(int n) const {
-                        Node* pptr = ptr;
-                        for (size_t i = 0; i < n || pptr != nullptr; i++)
-                        {
-                            pptr = pptr->prev;
-                        }
-                        
-                        return ConstIterator(pptr);
-                    }
-                
-                    ConstIterator& operator+=(int n) {
-                        for (size_t i = 0; i < n || ptr != nullptr; i++)
-                        {
-                            ptr = ptr->next;
-                        }
-                        return *this;
-                    }
-                    
-                    ConstIterator& operator-=(int n) {
-                        for (size_t i = 0; i < n || ptr != nullptr; i++)
-                        {
-                            ptr = ptr->prev;
-                        }
-                        return *this;
                     }
                 
                     bool operator==(const ConstIterator& other) const {
@@ -301,40 +232,6 @@ namespace my_container{
                         return tmp;
                     }
                 
-                    ReverseIterator operator+(int n) const {
-                        Node* pptr = ptr;
-                        for (size_t i = 0; i < n || pptr != nullptr; i++)
-                        {
-                            pptr = pptr->prev;
-                        }
-                        return ReverseIterator(pptr);
-                    }
-                
-                    ReverseIterator operator-(int n) const {
-                        Node* pptr = ptr;
-                        for (size_t i = 0; i < n || pptr != nullptr; i++)
-                        {
-                            pptr = pptr->next;
-                        }
-                        
-                        return ReverseIterator(pptr);
-                    }
-                
-                    ReverseIterator& operator+=(int n) {
-                        for (size_t i = 0; i < n || ptr != nullptr; i++)
-                        {
-                            ptr = ptr->prev;
-                        }
-                        return *this;
-                    }
-                    
-                    ReverseIterator& operator-=(int n) {
-                        for (size_t i = 0; i < n || ptr != nullptr; i++)
-                        {
-                            ptr = ptr->next;
-                        }
-                        return *this;
-                    }
                 
                     bool operator==(const ReverseIterator& other) const {
                         return ptr == other.ptr;
@@ -397,41 +294,6 @@ namespace my_container{
                         Iterator tmp = *this;
                         this->ptr = this->ptr->next;
                         return tmp;
-                    }
-                
-                    ConstReverseIterator operator+(int n) const {
-                        Node* pptr = ptr;
-                        for (size_t i = 0; i < n || pptr != nullptr; i++)
-                        {
-                            pptr = pptr->prev;
-                        }
-                        return ConstReverseIterator(pptr);
-                    }
-                
-                    ConstReverseIterator operator-(int n) const {
-                        Node* pptr = ptr;
-                        for (size_t i = 0; i < n || pptr != nullptr; i++)
-                        {
-                            pptr = pptr->next;
-                        }
-                        
-                        return ConstReverseIterator(pptr);
-                    }
-                
-                    ConstReverseIterator& operator+=(int n) {
-                        for (size_t i = 0; i < n || ptr != nullptr; i++)
-                        {
-                            ptr = ptr->prev;
-                        }
-                        return *this;
-                    }
-                    
-                    ConstReverseIterator& operator-=(int n) {
-                        for (size_t i = 0; i < n || ptr != nullptr; i++)
-                        {
-                            ptr = ptr->next;
-                        }
-                        return *this;
                     }
                 
                     bool operator==(const ConstReverseIterator& other) const {

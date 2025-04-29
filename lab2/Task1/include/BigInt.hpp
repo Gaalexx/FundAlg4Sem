@@ -351,6 +351,9 @@ public:
                     result += '0';
                     part.clear();
                 }
+                else{
+                    result += '0';
+                }
                 ++index;
             }
             if (part.size() != 0)
@@ -593,7 +596,8 @@ public:
         std::swap(first.digits, second.digits);
     }
 
-    long long length(){
+    long long length()
+    {
         return this->digits.size();
     }
 
@@ -642,21 +646,23 @@ private:
 
 BigInt mod_exp(const BigInt &base, const BigInt &exp, const BigInt &mod = BigInt())
 {
-    if(exp.digits.front() == 0){
+    if (exp.digits.front() == 0)
+    {
         return BigInt(1);
     }
 
     BigInt res = 1, n = exp, x = base; // res = x ^ n;
 
-
     bool negative = false;
-    if(x.isNegative && (n % BigInt(2) == BigInt(1))){
+    if (x.isNegative && (n % BigInt(2) == BigInt(1)))
+    {
         negative = true;
     }
 
-
-    while(n != BigInt()){
-        if(n.digits.back() % 2 == 1){
+    while (n != BigInt())
+    {
+        if (n.digits.back() % 2 == 1)
+        {
             res = (mod.digits.front() == 0) ? res * x : (res * x) % mod;
         }
         x *= x;
